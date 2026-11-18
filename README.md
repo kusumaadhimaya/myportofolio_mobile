@@ -12,6 +12,7 @@
 ## Table of Contents
 
 - [Tugas 7](#tugas-7)
+- [Tugas 8](#tugas-8)
 - [AI Disclosure](#ai-disclosure)
 
 ---
@@ -47,10 +48,37 @@
 
 ---
 
+## Tugas 8
+
+1. `Navigator.push()` membuka halaman baru dan membuat halaman sebelumnya tetap ada, jadi pengguna bisa kembali dengan tombol Back. `Navigator.pushReplacement()` mengganti halaman saat ini, sedangkan `Navigator.pop()` menutup halaman paling atas. Kartu Add Experience memakai `push()` supaya pengguna bisa kembali ke halaman utama. Opsi Home di drawer memakai `pushReplacement()` untuk membuka halaman utama.
+
+2. `Scaffold` menjadi kerangka halaman, `AppBar` menampilkan judul, dan `Drawer` menyediakan menu navigasi. Drawer yang sama dipakai di halaman utama, form proyek, dan form Experience agar navigasinya konsisten. Warna indigo pada AppBar form juga digunakan sebagai warna utama tema aplikasi.
+
+3. Form memakai `SingleChildScrollView` supaya semua input dan tombol Save tetap bisa dijangkau saat layar sempit atau papan ketik muncul. `Padding` dan `SizedBox` memberi jarak antarfield, sedangkan `Column` menyusunnya dari atas ke bawah.
+
+4. `GlobalKey<FormState>` digunakan untuk mengakses form. Setiap `validator` memeriksa nilai input, lalu `validate()` menjalankan semua validator saat Save ditekan. Contohnya, judul yang hanya berisi spasi ditolak, URL thumbnail harus memakai HTTP atau HTTPS, dan tanggal selesai tidak boleh sebelum tanggal mulai. Papan ketik atau date picker hanya membantu memasukkan data; validasi tetap diperlukan untuk menolak nilai yang salah.
+
+**AI Disclosure:** [Lihat bagian AI Disclosure](#ai-disclosure)
+
+---
+
 ## AI Disclosure
+
+- [AI Disclosure Tugas 7](#tugas-7-ai-disclosure)
+- [AI Disclosure Tugas 8](#tugas-8-ai-disclosure)
+
+### Tugas 7 AI Disclosure
 
 While working on Tugas 7, I used ChatGPT 6 Luna to support me in understanding the assignment requirements and guide me through implementation when I needed help. I always review its suggestions before trusting them.
 
-### Prompting Strategy
+#### Prompting Strategy
 
 I shared the assignment PDF with the AI to help me understand what I had to do and list the requirements. When I needed help, I asked follow-up questions and the AI guided me through the next steps.
+
+### Tugas 8 AI Disclosure
+
+While working on Tugas 8, I used ChatGPT 6 Luna to support me in understanding the assignment requirements and guide me through implementing the Experience form, navigation, and validation. I always review its suggestions before trusting them.
+
+#### Prompting Strategy
+
+I shared the assignment PDF, relevant Flutter files, and the Django `Experience` model with the AI to help me plan the form and check that its fields matched the model. When I needed help, I asked follow-up questions and used `flutter test` and `flutter analyze` to check the changes.
