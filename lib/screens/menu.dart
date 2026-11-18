@@ -12,6 +12,7 @@ class MyHomePage extends StatelessWidget {
   final List<ItemHomepage> items = [
     ItemHomepage("View Projects", Icons.folder, Colors.blue),
     ItemHomepage("Add Project", Icons.add_circle, Colors.green),
+    ItemHomepage("Add Experience", Icons.work_history, Colors.deepPurple),
     ItemHomepage("Logout", Icons.logout, Colors.red),
   ];
 
@@ -27,54 +28,40 @@ class MyHomePage extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       drawer: const LeftDrawer(),
-      body: Padding(
+      body: ListView(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // Horizontal row showing 3 InfoCards.
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                InfoCard(title: 'NPM', content: npm),
-                InfoCard(title: 'Name', content: nama),
-                InfoCard(title: 'Class', content: kelas),
-              ],
+        children: [
+          // Horizontal row showing 3 InfoCards.
+          Row(
+            children: [
+              Expanded(child: InfoCard(title: 'NPM', content: npm)),
+              Expanded(child: InfoCard(title: 'Name', content: nama)),
+              Expanded(child: InfoCard(title: 'Class', content: kelas)),
+            ],
+          ),
+          const SizedBox(height: 16.0),
+          const Padding(
+            padding: EdgeInsets.only(top: 16.0),
+            child: Text(
+              'Welcome to MyPortfolio Mobile!',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
             ),
-
-            const SizedBox(height: 16.0),
-
-            // Greeting and 3-column action grid.
-            Center(
-              child: Column(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 16.0),
-                    child: Text(
-                      'Welcome to MyPortfolio Mobile!',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ),
-
-                  GridView.count(
-                    primary: true,
-                    padding: const EdgeInsets.all(20),
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    crossAxisCount: 3,
-                    shrinkWrap: true,
-                    children: items.map((ItemHomepage item) {
-                      return ItemCard(item);
-                    }).toList(),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+          GridView.count(
+            primary: false,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.all(20),
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            crossAxisCount: 2,
+            childAspectRatio: 1.2,
+            children: items.map((ItemHomepage item) {
+              return ItemCard(item);
+            }).toList(),
+          ),
+        ],
       ),
     );
   }
@@ -92,7 +79,7 @@ class InfoCard extends StatelessWidget {
     return Card(
       elevation: 2.0,
       child: Container(
-        width: MediaQuery.of(context).size.width / 3.5,
+        width: double.infinity,
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
