@@ -15,6 +15,17 @@ class ItemCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: () {
+          if (item.name == 'Add Experience') {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ExperienceFormPage(),
+              ),
+            );
+            return;
+          }
+
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
@@ -30,14 +41,6 @@ class ItemCard extends StatelessWidget {
             );
           }
 
-          if (item.name == 'Add Experience') {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ExperienceFormPage(),
-              ),
-            );
-          }
         },
         child: Container(
           padding: const EdgeInsets.all(8),
