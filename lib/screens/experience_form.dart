@@ -13,7 +13,10 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
   final _startDateController = TextEditingController();
   final _endDateController = TextEditingController();
 
+  String _title = '';
+  String _description = '';
   String _category = 'Full-Time';
+  String _thumbnail = '';
   DateTime? _startedAt;
   DateTime? _endedAt;
 
@@ -65,6 +68,41 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
     );
   }
 
+  void _showSummary() {
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: const Text('Experience berhasil ditambahkan!'),
+          content: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Judul: $_title'),
+                Text('Deskripsi: $_description'),
+                Text('Kategori: $_category'),
+                Text('Mulai: ${_formatDate(_startedAt!)}'),
+                Text(
+                  'Selesai: ${_endedAt == null ? 'Ongoing' : _formatDate(_endedAt!)}',
+                ),
+                Text(
+                  'Thumbnail: ${_thumbnail.isEmpty ? 'Tidak ada' : _thumbnail}',
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   void dispose() {
     _startDateController.dispose();
@@ -94,6 +132,7 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                   'Title',
                   hint: 'e.g. Teaching Assistant',
                 ),
+                onChanged: (value) => _title = value,
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return 'Title cannot be empty.';
@@ -105,6 +144,7 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
               TextFormField(
                 maxLines: 4,
                 decoration: _decoration('Description'),
+                onChanged: (value) => _description = value,
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return 'Description cannot be empty.';
@@ -163,6 +203,7 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                   'Thumbnail URL (optional)',
                   hint: 'https://example.com/image.jpg',
                 ),
+                onChanged: (value) => _thumbnail = value.trim(),
                 validator: (value) {
                   final url = value?.trim() ?? '';
                   if (url.isEmpty) return null;
@@ -178,7 +219,11 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
               ),
               const SizedBox(height: 24),
               FilledButton(
-                onPressed: () => _formKey.currentState?.validate(),
+                onPressed: () {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    _showSummary();
+                  }
+                },
                 child: const Text('Save'),
               ),
             ],
