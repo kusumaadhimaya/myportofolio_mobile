@@ -173,9 +173,8 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                 controller: _startDateController,
                 readOnly: true,
                 onTap: () => _pickDate(isStartDate: true),
-                decoration: _decoration('Start date').copyWith(
-                  suffixIcon: const Icon(Icons.calendar_today),
-                ),
+                decoration: _decoration('Start date')
+                    .copyWith(suffixIcon: const Icon(Icons.calendar_today)),
                 validator: (_) =>
                     _startedAt == null ? 'Choose a start date.' : null,
               ),
@@ -184,9 +183,8 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                 controller: _endDateController,
                 readOnly: true,
                 onTap: () => _pickDate(isStartDate: false),
-                decoration: _decoration('End date (optional)').copyWith(
-                  suffixIcon: const Icon(Icons.calendar_today),
-                ),
+                decoration: _decoration('End date (optional)')
+                    .copyWith(suffixIcon: const Icon(Icons.calendar_today)),
                 validator: (_) {
                   if (_endedAt != null &&
                       _startedAt != null &&
