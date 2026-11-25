@@ -34,9 +34,15 @@ class MyHomePage extends StatelessWidget {
           // Horizontal row showing 3 InfoCards.
           Row(
             children: [
-              Expanded(child: InfoCard(title: 'NPM', content: npm)),
-              Expanded(child: InfoCard(title: 'Name', content: nama)),
-              Expanded(child: InfoCard(title: 'Class', content: kelas)),
+              Expanded(
+                child: InfoCard(title: 'NPM', content: npm),
+              ),
+              Expanded(
+                child: InfoCard(title: 'Name', content: nama),
+              ),
+              Expanded(
+                child: InfoCard(title: 'Class', content: kelas),
+              ),
             ],
           ),
           const SizedBox(height: 16.0),
@@ -100,4 +106,3 @@ class ItemHomepage {
 
   ItemHomepage(this.name, this.icon, this.color);
 }
-

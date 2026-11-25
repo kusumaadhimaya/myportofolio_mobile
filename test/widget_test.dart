@@ -18,19 +18,20 @@ Future<void> openExperienceFromHome(WidgetTester tester) async {
 }
 
 void main() {
-  testWidgets('homepage action opens the Experience form and Back returns home', (
-    tester,
-  ) async {
-    useMobileViewport(tester);
-    await tester.pumpWidget(const MyApp());
+  testWidgets(
+    'homepage action opens the Experience form and Back returns home',
+    (tester) async {
+      useMobileViewport(tester);
+      await tester.pumpWidget(const MyApp());
 
-    await openExperienceFromHome(tester);
-    expect(find.text('Start date'), findsOneWidget);
+      await openExperienceFromHome(tester);
+      expect(find.text('Start date'), findsOneWidget);
 
-    await tester.binding.handlePopRoute();
-    await tester.pumpAndSettle();
-    expect(find.text('Welcome to MyPortfolio Mobile!'), findsOneWidget);
-  });
+      await tester.binding.handlePopRoute();
+      await tester.pumpAndSettle();
+      expect(find.text('Welcome to MyPortfolio Mobile!'), findsOneWidget);
+    },
+  );
 
   testWidgets('drawer opens the Experience form and Home returns to homepage', (
     tester,
