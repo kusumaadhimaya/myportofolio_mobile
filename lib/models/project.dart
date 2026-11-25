@@ -14,7 +14,7 @@ class Project {
   });
 
   @JsonKey(includeToJson: false)
-  final int? id;
+  final String? id;
   final String title;
   final String description;
   final String techStack;
